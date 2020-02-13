@@ -1,24 +1,28 @@
 <template>
   <div>
     <h1>Product List</h1>
-    <ul>
+    <img v-if="loading" src="https://gph.is/2gERUhl" style="height:100px;width:100px;" />
+    <ul v-else>
       <li v-for="(product, index) in products" :key="index">{{product.title}}-{{product.price}}</li>
     </ul>
   </div>
 </template>
 
 <script>
-import shop from "@/api/shop";
+import store from "@/store/index";
 export default {
   data: function() {
     return {
-      products: []
+      loading: false
     };
   },
+  computed: {
+    products() {
+      return store.getters.availableProducts;
+    }
+  },
   created() {
-    shop.getProducts(products => {
-      this.products = products;
-    });
+    store.dispatch("fetchProducts").then(() => (this.loading = false));
   }
 };
 </script>
