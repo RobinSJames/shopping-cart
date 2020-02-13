@@ -28,6 +28,16 @@ export default new Vuex.Store({
           resolve()
         });
       })
+    },
+    cartProducts(state) {
+      return state.cart.map(cartItem => {
+        const product = state.products.find(product => product.id === cartItem.id)
+        return {
+          title: product.title,
+          price: product.price,
+          quantity: cartItem.quantity
+        }
+      })
     }
     // addToCart(context, product) {
     //   if (product.inventory > 0) {

@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import store from "@/store/index";
 export default {
   data: function() {
     return {
@@ -18,7 +17,7 @@ export default {
   },
   computed: {
     products() {
-      return store.getters.availableProducts;
+      return this.$store.getters.availableProducts;
     }
   },
   created() {
