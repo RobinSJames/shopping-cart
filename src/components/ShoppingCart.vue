@@ -5,8 +5,9 @@
       <li
         v-for="(product, index) in products"
         :key="index"
-      >{{product.title}} - {{product.price}} - {{product.quantity}}</li>
+      >{{product.title}} - {{product.price | currency}} - {{product.quantity}}</li>
     </ul>
+    <p>Total: {{total | currency}}</p>
   </div>
 </template>
 
@@ -15,6 +16,9 @@ export default {
   computed: {
     products() {
       return this.$store.getters.cartProducts;
+    },
+    total() {
+      return this.$store.getters.cartTotal;
     }
   }
 };
