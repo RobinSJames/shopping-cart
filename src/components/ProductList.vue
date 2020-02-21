@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     ...mapState({
-      products: state => state.products
+      products: state => state.products.items
     }),
     ...mapGetters({
       productIsInStock: "productIsInStock"
